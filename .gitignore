@@ -16,3 +16,5 @@ bin/
 *.swp
 *.idea
 *.iml
+dependencies/
+save.pom.xml
