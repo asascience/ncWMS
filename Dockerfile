@@ -1,4 +1,4 @@
-FROM unidata/tomcat-docker:8.5
+FROM unidata/tomcat-docker:8.5-jdk11
 MAINTAINER Kyle Wilcox <kyle@axiomdatascience.com>
 
 RUN \
@@ -11,12 +11,15 @@ RUN \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Compile edal to use required features in develop branch
-ENV EDAL_VERSION edal-1.5.2
+#ENV EDAL_VERSION edal-1.5.2
+ENV EDAL_VERSION 1.5.3-RPS
+
 # Remove this for releases
 #ENV EDAL_VERSION develop
 RUN mkdir /edal && \
     cd /edal && \
-    git clone https://github.com/Reading-eScience-Centre/edal-java.git && \
+    #git clone https://github.com/Reading-eScience-Centre/edal-java.git && \
+    git clone https://github.com/asascience/edal-java.git  && \
     cd edal-java && \
     git checkout ${EDAL_VERSION} && \
     JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 mvn clean install
